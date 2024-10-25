@@ -1,0 +1,134 @@
+html {
+    background-image: url('./assets/stars-night-space-charles-wain.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    color: white;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    font-family: 'Marker Felt', sans-serif;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#score {
+    font-size: 2em;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 20px;
+}
+
+#endGame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#message {
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    font-size: 5em;
+}
+
+button {
+    font-family: 'Marker Felt', sans-serif;
+    font-size: 1.5em;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: gray;
+}
+
+#sky {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+#earth {
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.meteors {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: none;
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}   
+
+#meteor-1 {
+    left: 0px;
+    bottom: 500px;
+}
+
+#meteor-2 {
+    left: 0px;
+    bottom: 800px;
+}
+
+#meteor-3 {
+    top: -275px;
+    left: 225px;
+}
+
+#meteor-4 {
+    top: -375px;
+    left: 375px;
+}
+
+#meteor-5 {
+    top: -475px;
+    left: 460px;
+}
+
+#meteor-6 {
+    top: -520px;
+    left: 575px;
+}
+
+#meteor-7 {
+    left: 0px;
+    bottom: 200px;
+}
+
+#meteor-8 {
+    left: 0px;
+    bottom: 800px;
+}

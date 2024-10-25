@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Playground</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+
+    <div id='sky'>
+        <img class="meteors" src="./assets/meteor.png" id="meteor-1" />
+        <img class="meteors" src="./assets/meteor.png" id="meteor-2" />
+        <img class="meteors" src="./assets/meteor.png" id="meteor-3" />
+        <img class="meteors" src="./assets/meteor.png" id="meteor-4" />
+        <img class="meteors" src="./assets/meteor.png" id="meteor-5" />
+        <img class="meteors" src="./assets/meteor.png" id="meteor-6" />
+        <img id="earth" src="./assets/worldwide.png" id="meteor-6" />
+    </div>
+
+    <div id="endGame">
+        <div id="message"></div>
+        <button onclick="location.href='meteorGame.html'">Retry</button>
+    </div>
+
+    <div id="score">Score: 0</div>
+
+    <script>
+        function resetMeteor(meteorId) {
+            const meteor = document.getElementById(meteorId);
+            if (!meteor) {
+                const newMeteor = document.createElement("img");
+                newMeteor.id = meteorId;
+                newMeteor.className = "meteors";
+                newMeteor.src = "./assets/meteor.png"; // Reset to original image
+                newMeteor.addEventListener('click', meteorClicked);
+                document.getElementById("sky").appendChild(newMeteor);
+                setRandomPosition(newMeteor); // Reset position
+            }
+        }
+
+        function meteorClicked(event) {
+            const meteor = event.target;
+            meteor.src = "./assets/explosion.png";
+            const score = document.getElementById("score");
+            const scoreValue = Number(score.innerText.replace("Score: ", ""));
+            score.innerText = "Score: " + (scoreValue + 1);
+            setTimeout(() => {
+                document.getElementById("sky").removeChild(meteor);
+                resetMeteor(meteor.id);
+            }, 2000);
+        }
+
+        function setEvents() {
+            const meteors = Array.from(document.getElementsByClassName('meteors'));
+            meteors.forEach(meteor => {
+                meteor.addEventListener('click', meteorClicked)
+            });
+        }
+
+        function getRandomNumber(max) {
+            return Math.floor(Math.random() * max)
+        }
+
+        function getRandomDirection() {
+            const directions = ["top", "right", "bottom", "left"];
+            return directions[getRandomNumber(directions.length)];
+        }
+
+        function checkCollision(element1, element2) {
+            const rect1 = element1.getBoundingClientRect();
+            const rect2 = element2.getBoundingClientRect();
+            return !(
+                rect1.top > rect2.bottom ||
+                rect1.bottom < rect2.top ||
+                rect1.left > rect2.right ||
+                rect1.right < rect2.left
+            );
+        }
+
+        function moveElement(elementId, pxMove, direction) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                const style = window.getComputedStyle(element);
+                const styleValue = style.getPropertyValue(direction).replace("px", "");
+                element.style[direction] = (Number(styleValue) + pxMove) + "px";
+            }
+        }
+
+        function endGame() {
+            document.getElementById("sky").remove();
+            document.getElementById("message").innerText = "Game Over";
+        }
+
+        function startGame() {
+            const timing = 1;
+            const meteors = ["meteor-1", "meteor-2", "meteor-3", "meteor-4", "meteor-5", "meteor-6", "meteor-7", "meteor-8"]
+            const intervalId = setInterval(() => {
+                meteors.forEach(meteorId => {
+                    const meteor = document.getElementById(meteorId);
+                    if (!meteor) {
+                        return;
+                    }
+                    moveElement(meteorId, 1, getRandomDirection());
+                    if (checkCollision(document.getElementById(meteorId), document.getElementById(
+                            "earth"))) {
+                        document.getElementById(meteorId).src = "./assets/explosion.png";
+                        endGame();
+                        clearInterval(intervalId);
+
+                    }
+                })
+            }, timing);
+        }
+
+        function main() {
+            setEvents();
+            startGame();
+        }
+
+        main();
+    </script>
+
+</body>
+
+</html>
