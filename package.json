@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server . -o ./meteorGame.html"
+    "start": "http-server . -o ./src/meteorGame.html"
   },
   "author": "",
   "license": "ISC",

@@ -1,2 +1,2 @@
-docker build --tag meteor .
-docker run -p 3010:8080 --name meteor -d meteor
+docker build -t html-server-meteor .  
+docker run -d --name meteor -p 3010:80 html-server-meteor
