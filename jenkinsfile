@@ -6,6 +6,7 @@ pipeline {
             steps {
                 script {
                     echo "Deploy application ..."
+                    sh "chmod +x -R ${env.WORKSPACE}"
                     sh "./start.bash"
                 }
             }
