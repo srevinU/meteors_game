@@ -20,12 +20,17 @@
 
     <div id="endGame">
         <div id="message"></div>
-        <button onclick="location.href='meteorGame.html'">Retry</button>
+        <button id="redirectButton">Retry</button>
     </div>
 
     <div id="score">Score: 0</div>
 
     <script>
+
+        document.getElementById("redirectButton").addEventListener("click", function() {
+            window.location.href = "https://meteor-game.cedricsegura.dev/";
+        });
+
         function resetMeteor(meteorId) {
             const meteor = document.getElementById(meteorId);
             if (!meteor) {
